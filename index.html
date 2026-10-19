@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070a13">
+  <meta name="description" content="الموقع الشخصي — شبكات، سيرفرات، أمن سيبراني، برمجة وتطوير ويب وصناعة محتوى مرئي.">
+  <title>Rodi Ryad — Cybersecurity & Technology</title>
+
+  <style>
+    :root {
+      --bg: #050711;
+      --glass: rgba(255, 255, 255, .065);
+      --glass-strong: rgba(255, 255, 255, .105);
+      --line: rgba(255, 255, 255, .12);
+      --text: #f7f8ff;
+      --muted: #a9afc2;
+      --blue: #72a7ff;
+      --cyan: #69e7ff;
+      --violet: #a98cff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .38);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 15%, rgba(91, 120, 255, .13), transparent 28%),
+        radial-gradient(circle at 15% 75%, rgba(72, 224, 255, .08), transparent 30%),
+        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      pointer-events: none;
+    }
+
+    .aurora {
+      position: fixed;
+      inset: -20%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(100, 130, 255, .12), transparent 35%),
+        radial-gradient(ellipse at 75% 65%, rgba(100, 230, 255, .08), transparent 32%);
+      filter: blur(45px);
+      animation: aurora 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes aurora {
+      from {
+        transform: translate3d(-2%, 0, 0) scale(1)
+      }
+
+      to {
+        transform: translate3d(2%, -2%, 0) scale(1.06)
+      }
+    }
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, calc(100% - 28px));
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--line);
+      background: rgba(8, 10, 20, .58);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      border-radius: 22px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, .25);
+      z-index: 20;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .3px
+    }
+
+    .brand span {
+      color: var(--cyan)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: #dfe4f3;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, .08);
+      color: #fff
+    }
+
+    .menu {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 23px
+    }
+
+    main {
+      width: min(1100px, calc(100% - 28px));
+      margin: auto
+    }
+
+    section {
+      padding: 105px 0 20px
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 115px;
+    }
+
+    .hero-wrap {
+      max-width: 850px
+    }
+
+    .photo-shell {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin: 0 auto 28px;
+      padding: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--violet), #fff, var(--blue));
+      box-shadow: 0 0 45px rgba(105, 231, 255, .25), 0 0 90px rgba(169, 140, 255, .15);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .photo-shell:before {
+      content: "";
+      position: absolute;
+      inset: -13px;
+      border-radius: 50%;
+      border: 1px solid rgba(105, 231, 255, .28);
+      animation: spin 10s linear infinite;
+    }
+
+    .photo-shell:after {
+      content: "";
+      position: absolute;
+      inset: -25px;
+      border-radius: 50%;
+      border: 1px dashed rgba(169, 140, 255, .20);
+      animation: spin 18s linear infinite reverse;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      border: 4px solid #090b15;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-9px)
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .045);
+      color: #cbd3e8;
+      font-size: 13px;
+      backdrop-filter: blur(15px);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #6effb4;
+      box-shadow: 0 0 14px #6effb4
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.02;
+      margin: 22px 0 15px;
+      letter-spacing: -2.5px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #fff 15%, var(--cyan) 52%, #b89cff 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .role {
+      font-size: clamp(18px, 3vw, 25px);
+      color: #cdd4e7;
+      margin-bottom: 22px
+    }
+
+    .hero p {
+      max-width: 730px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px
+    }
+
+    .btn {
+      text-decoration: none;
+      color: white;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .07);
+      padding: 12px 19px;
+      border-radius: 14px;
+      transition: .3s;
+      backdrop-filter: blur(15px);
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(114, 167, 255, .25), rgba(105, 231, 255, .12));
+      border-color: rgba(105, 231, 255, .35);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .25);
+      background: rgba(255, 255, 255, .11)
+    }
+
+    .section-head {
+      margin-bottom: 25px
+    }
+
+    .kicker {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px
+    }
+
+    h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      margin-top: 7px;
+      letter-spacing: -1px
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-top: 9px;
+      line-height: 1.8
+    }
+
+    .glass {
+      background: linear-gradient(145deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px) saturate(145%);
+      -webkit-backdrop-filter: blur(24px) saturate(145%);
+    }
+
+    .about {
+      padding: 30px;
+      line-height: 2;
+      color: #d2d7e6;
+      font-size: 17px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px
+    }
+
+    .card {
+      padding: 24px;
+      transition: .35s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .card:before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      right: -50px;
+      top: -60px;
+      background: rgba(105, 231, 255, .09);
+      filter: blur(25px);
+      border-radius: 50%;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(105, 231, 255, .27)
+    }
+
+    .icon {
+      font-size: 27px;
+      margin-bottom: 13px
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin-bottom: 9px
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, .11);
+      background: rgba(255, 255, 255, .05);
+      color: #dce4f8;
+      padding: 6px 9px;
+      border-radius: 9px;
+      font-size: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px
+    }
+
+    .timeline .item {
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 125px 1fr;
+      gap: 20px
+    }
+
+    .time {
+      color: var(--cyan);
+      font-weight: 700
+    }
+
+    .item p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 6px
+    }
+
+    .contact {
+      padding: 35px;
+      text-align: center
+    }
+
+    .contact p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin: 10px auto 22px;
+      max-width: 650px
+    }
+
+    footer {
+      text-align: center;
+      color: #727a91;
+      padding: 65px 0 30px;
+      font-size: 13px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:760px) {
+      .nav-links {
+        display: none
+      }
+
+      .menu {
+        display: block
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .timeline .item {
+        grid-template-columns: 1fr;
+        gap: 7px
+      }
+
+      .photo-shell {
+        width: 165px;
+        height: 165px
+      }
+
+      h1 {
+        letter-spacing: -1.5px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="stars"></canvas>
+  <div class="aurora"></div>
+
+  <nav class="nav">
+    <div class="brand">Rodi<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">نبذة</a></li>
+      <li><a href="#skills">المهارات</a></li>
+      <li><a href="#projects">المشاريع</a></li>
+      <li><a href="#journey">المسيرة</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul>
+    <button class="menu" onclick="document.querySelector('.nav-links').classList.toggle('show')"
+      aria-label="القائمة">☰</button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-wrap">
+        <div class="photo-shell">
+          <img class="photo" src="profile.jpg" alt="الصورة الشخصية">
+        </div>
+
+        <div class="eyebrow"><span class="dot"></span> أبني، أتعلم، وأحوّل الأفكار إلى واقع</div>
+        <h1>Rodi <span class="gradient">Ryad</span></h1>
+        <div class="role">شبكات • سيرفرات • أمن سيبراني • برمجة • تطوير ويب</div>
+        <p>
+          أعمل في مجال الشبكات والسيرفرات والأمن السيبراني، وأهتم أيضاً بالبرمجة
+          وتطوير الويب وصناعة المحتوى المرئي باستخدام برامج Adobe.
+          أحب تعلّم التقنيات الجديدة وتحويل الأفكار إلى أعمال عملية.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="#projects">استكشف أعمالي ✦</a>
+          <a class="btn" href="#contact">تواصل معي</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="reveal">
+      <div class="section-head">
+        <div class="kicker">ABOUT</div>
+        <h2>أكثر من مجرد سيرة ذاتية</h2>
+        <p class="section-sub">مساحة تجمع خبراتي واهتماماتي والمشاريع التي أبنيها.</p>
+      </div>
+      <div class="glass about">
+        أؤمن أن أفضل طريقة لتعلّم التقنية هي أن تبني شيئاً حقيقياً بيدك.
+        لذلك أجمع بين البنية التحتية، الشبكات، إدارة السيرفرات، الأمن السيبراني،
+        البرمجة وتطوير الويب، مع اهتمام بصناعة المحتوى والتصميم المرئي.
+        هدفي دائماً هو الانتقال من الفكرة إلى نموذج يعمل ويمكن تطويره.
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <div class="section-head">
+        <div class="kicker">SKILLS</div>
+        <h2>مجالاتي التقنية</h2>
+      </div>
+
+      <div class="grid">
+        <article class="glass card">
+          <div class="icon">🛡️</div>
+          <h3>الأمن السيبراني</h3>
+          <p>اختبار أمان تطبيقات الويب، الاستطلاع، التحليل، التقييم الأمني ومفاهيم الحماية.</p>
+          <div class="tags"><span class="tag">Web Security</span><span class="tag">Burp Suite</span><span
+              class="tag">Nmap</span></div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">🌐</div>
+          <h3>الشبكات والسيرفرات</h3>
+          <p>فهم الشبكات والخدمات، Linux، إدارة الخوادم، الخدمات الشبكية، SSH والجدران النارية.</p>
+          <div class="tags"><span class="tag">Linux</span><span class="tag">Networking</span><span
+              class="tag">Servers</span></div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">⌨️</div>
+          <h3>البرمجة وتطوير الويب</h3>
+          <p>بناء الأدوات والواجهات وواجهات API وتحويل الأفكار إلى تطبيقات عملية قابلة للتطوير.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span
+              class="tag">HTML/CSS/JS</span></div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">🎨</div>
+          <h3>المحتوى المرئي</h3>
+          <p>اهتمام بصناعة المحتوى والتصميم والمونتاج والهوية البصرية باستخدام أدوات Adobe.</p>
+          <div class="tags"><span class="tag">Photoshop</span><span class="tag">Premiere</span><span
+              class="tag">Adobe</span></div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">🧠</div>
+          <h3>التعلّم المستمر</h3>
+          <p>أبحث باستمرار عن تقنيات جديدة وأجرّبها عملياً بدلاً من الاكتفاء بالجانب النظري.</p>
+          <div class="tags"><span class="tag">Research</span><span class="tag">Labs</span><span
+              class="tag">Hands-on</span></div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">⚡</div>
+          <h3>تحويل الأفكار إلى مشاريع</h3>
+          <p>أحوّل الأفكار إلى نماذج أولية ومواقع وأدوات عملية يمكن اختبارها وتطويرها.</p>
+          <div class="tags"><span class="tag">Projects</span><span class="tag">Automation</span><span
+              class="tag">Problem Solving</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <div class="section-head">
+        <div class="kicker">PROJECTS</div>
+        <h2>مشاريع وتجارب</h2>
+        <p class="section-sub">ضع هنا أفضل مشاريعك مع رابط GitHub أو رابط المعاينة.</p>
+      </div>
+
+      <div class="grid">
+        <article class="glass card">
+          <div class="icon">📱</div>
+          <h3>telephone-sy</h3>
+          <p>منصة ويب لفكرة بيع وشراء الهواتف، مع التركيز على تجربة استخدام بسيطة وقابلة للتوسع.</p>
+          <div class="tags"><span class="tag">Web App</span><span class="tag">FastAPI</span><span
+              class="tag">Marketplace</span></div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">🔎</div>
+          <h3>Security Tools</h3>
+          <p>تجارب وأدوات لفحص تطبيقات الويب وتحليل إعدادات الأمان بطريقة منظمة وآمنة.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Security</span><span class="tag">API</span>
+          </div>
+        </article>
+
+        <article class="glass card">
+          <div class="icon">🖥️</div>
+          <h3>Infrastructure Labs</h3>
+          <p>مختبرات عملية في Linux والشبكات والسيرفرات والخدمات والبنية التحتية.</p>
+          <div class="tags"><span class="tag">Linux</span><span class="tag">Servers</span><span
+              class="tag">Networking</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="journey" class="reveal">
+      <div class="section-head">
+        <div class="kicker">JOURNEY</div>
+        <h2>المسيرة</h2>
+      </div>
+      <div class="timeline">
+        <div class="glass item">
+          <div class="time">NOW</div>
+          <div>
+            <h3>تطوير المهارات التقنية</h3>
+            <p>التوسع في Web Application Security، الشبكات، السيرفرات والبرمجة وبناء مشاريع عملية.</p>
+          </div>
+        </div>
+        <div class="glass item">
+          <div class="time">BUILD</div>
+          <div>
+            <h3>من الفكرة إلى المنتج</h3>
+            <p>بناء مشاريع وتجارب عملية تجمع بين البرمجة والبنية التحتية والأمن.</p>
+          </div>
+        </div>
+        <div class="glass item">
+          <div class="time">NEXT</div>
+          <div>
+            <h3>المزيد من العمق</h3>
+            <p>تطوير الخبرة العملية، بناء مشاريع أقوى، وتوثيق رحلة التعلّم والإنجازات.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <div class="glass contact">
+        <div class="kicker">CONTACT</div>
+        <h2>لنبنِ شيئاً مميزاً</h2>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Rodi Ryad — Built with HTML, CSS & JavaScript </footer>
+
+  <script>
+    // Animated star field
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    let w, h, dpr;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = innerWidth; h = innerHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(180, Math.floor((w * h) / 8500));
+      stars = Array.from({length: count}, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        r: Math.random() * 1.35 + .25,
+        a: Math.random() * .7 + .15,
+        s: Math.random() * .18 + .025,
+        phase: Math.random() * Math.PI * 2
+      }));
+    }
+    function animate(t) {
+      ctx.clearRect(0, 0, w, h);
+      for (const s of stars) {
+        s.y += s.s;
+        if (s.y > h + 4) {s.y = -4; s.x = Math.random() * w}
+        const alpha = s.a * (.65 + .35 * Math.sin(t * .0015 + s.phase));
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(210,225,255,${alpha})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(animate);
+    }
+    addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(animate);
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {if (e.isIntersecting) e.target.classList.add('show')})
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
